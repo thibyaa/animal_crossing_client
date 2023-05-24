@@ -7,32 +7,37 @@ import MusicContainer from './containers/MusicContainer';
 
 function App() {
 
-  const [villagers, setVillagers] = useState({});
+  const [villagers, setVillagers] = useState([]);
   const [music, setMusic] = useState(null);
-
-  const randomNumberGenerator = Math.floor(Math.random() * (391 - 1) + 1);
-  console.log(randomNumberGenerator);
 
   useEffect(()=>{
 
     const fetchVillagers = async () => {
       const response = await fetch("https://acnhapi.com/v1/villagers/")
       const data = await response.json();
-      setVillagers(data);
+
+      const villagersArray = Object.values(data)
+      console.log(villagersArray) 
+      // shuffle the array 
+      // slice first 5 
+
+      setVillagers(villagersArray);
     }
-    
+    // fyi there's 391 villagers
     fetchVillagers();
   },[])
 
-  // useEffect(() => {
-  //   const fetchMusic = async () => {
-  //     const response = await fetch(`http://acnhapi.com/v1/music/${randomNumberGenerator}`)
-  //     const data = await response.json();
-  //     setMusic(data);
-  //   }
+  const randomNumberGenerator = Math.floor(Math.random() * (95 - 1) + 1);
 
-  //   fetchMusic();
-  // }, [])
+  useEffect(() => {
+    const fetchMusic = async () => {
+      const response = await fetch(`http://acnhapi.com/v1/music/${randomNumberGenerator}`)
+      const data = await response.json(); // it's MP3 data that is returned
+      setMusic(data);
+    }
+
+    fetchMusic();
+  }, [])
 
   return (
     <>
