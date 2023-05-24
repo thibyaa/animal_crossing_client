@@ -1,0 +1,13 @@
+.member_card > img{
+    width: 260px;
+    height: 260px;
+}
+
+.member_card {
+    background-color: #7a904d;
+    width: 280px;
+    padding: 25px;
+    margin: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 10px;
+}

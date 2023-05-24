@@ -1,0 +1,21 @@
+body{
+    background-color: #dbbf9e;
+    text-align: center;
+}
+
+header{
+    display: flex; 
+    justify-content: center;
+}
+
+h1{
+    color: #1F3D0C;
+}
+
+header > img {
+    width: 75px;
+}
+
+img{
+    width: 300px;
+}
