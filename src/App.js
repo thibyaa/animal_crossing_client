@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
 import './CSSFiles/App.css';
+import './CSSFiles/MusicContainer.css';
 import AnimalCrossingLogo from './assets/Animal_Crossing_Logo.png';
 import FolktaleLogo from './assets/Folktale_Forest_Tree_Icon.png'
 import CommunityContainer from './containers/CommunityContainer';
-import MusicContainer from './containers/MusicContainer';
 
 function App() {
 
   const [villagers, setVillagers] = useState([]);
   const [music, setMusic] = useState(null);
+  const [playMusic, setPlayMusic] = useState(false);
 
+  // VILLAGE CODE
   useEffect(()=>{
 
     const fetchVillagers = async () => {
@@ -35,11 +37,12 @@ function App() {
     fetchVillagers()
   },[])
 
+  // MUSIC RELATED CODE
   const randomNumberGenerator = Math.floor(Math.random() * (95 - 1) + 1);
+  let AnimalCrossingMusic = new AudioContext();
 
   useEffect(() => {
-    const fetchMusic = async () => {
-      let AnimalCrossingMusic = new AudioContext();
+    const fetchMusic = async () => { 
       const response = await fetch(`http://acnhapi.com/v1/music/${randomNumberGenerator}`)
       const data = await response.arrayBuffer();
       const musicToPlay = await AnimalCrossingMusic.decodeAudioData(data);
@@ -48,6 +51,19 @@ function App() {
     fetchMusic();
   }, [])
 
+  function playback(){
+      const playSound = AnimalCrossingMusic.createBufferSource();
+      playSound.buffer = music;
+      playSound.connect(AnimalCrossingMusic.destination);
+      playSound.start(AnimalCrossingMusic.currentTime);
+      // playSound.stop(AnimalCrossingMusic.currentTime);
+  }
+
+  const handleClick = () => {
+    setPlayMusic(!playMusic);
+    playback();
+    }
+
   return (
     <>
     <img src={AnimalCrossingLogo}/>
@@ -55,7 +71,9 @@ function App() {
     <h1>Bulletin Board</h1>
     <img src={FolktaleLogo}/>
     </header>
-    <MusicContainer music={music}/>
+    <section className="music_box">
+      <button onClick={handleClick}>{playMusic ? "Please STOP" : "Play Music"}  </button>
+    </section>
     <CommunityContainer villagers={villagers}/>
     </>
   );
