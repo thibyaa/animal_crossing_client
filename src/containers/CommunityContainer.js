@@ -1,4 +1,5 @@
 import MemberComponent from "../components/MemberComponent";
+import '../CSSFiles/CommunityContainer.css'
 
 const CommunityContainer = ({villagers}) => {
 
@@ -7,9 +8,9 @@ const CommunityContainer = ({villagers}) => {
     })
 
     return ( 
-        <>
+        <section className="community">
         {generateMember}
-        </>
+        </section>
      );
 }
  

@@ -4,11 +4,8 @@ const MemberComponent = ({villager}) => {
 
     const [detailsDisplay, setDetailsDisplay] = useState(false);
 
-    const memberName = villager.name[0];
-
-    // const changePTag = () => {
-    //     return <p> Personality: {villager.personality} <br/> Hobby: {villager.hobby} <br/> Species: {villager.species} </p>
-    // }
+    const memberName = Object.values(villager.name)[0];
+    console.log(memberName)
 
     const handleClick = () => {
         setDetailsDisplay(!detailsDisplay);

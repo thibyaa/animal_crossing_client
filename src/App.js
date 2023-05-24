@@ -17,14 +17,22 @@ function App() {
       const data = await response.json();
 
       const villagersArray = Object.values(data)
-      console.log(villagersArray) 
-      // shuffle the array 
-      // slice first 5 
+      // console.log(villagersArray) 
 
-      setVillagers(villagersArray);
+      // shuffle the array 
+      for(let i = villagersArray.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * (i+1));
+        [villagersArray[i], villagersArray[j]] = [villagersArray[j], villagersArray[i]];
+      }
+
+      // slice first 5 
+      const fiveVillagers = villagersArray.slice(0, 5);
+      console.log(fiveVillagers);
+
+      setVillagers(fiveVillagers);
     }
     // fyi there's 391 villagers
-    fetchVillagers();
+    fetchVillagers()
   },[])
 
   const randomNumberGenerator = Math.floor(Math.random() * (95 - 1) + 1);

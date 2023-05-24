@@ -10,4 +10,16 @@
     margin: 20px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     border-radius: 10px;
+    color: antiquewhite;
+}
+
+.member_card > button {
+    background-color: #5C4033;
+    border-radius: 8px;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 500;
+    position: relative;
+    text-align: center;
+    padding: 5px 10px;
 }
