@@ -5,7 +5,7 @@ const MemberComponent = ({villager}) => {
     const [detailsDisplay, setDetailsDisplay] = useState(false);
 
     const memberName = Object.values(villager.name)[0];
-    console.log(memberName)
+    // console.log(memberName)
 
     const handleClick = () => {
         setDetailsDisplay(!detailsDisplay);

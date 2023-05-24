@@ -31,7 +31,7 @@ function App() {
 
       setVillagers(fiveVillagers);
     }
-    // fyi there's 391 villagers
+
     fetchVillagers()
   },[])
 
@@ -39,11 +39,12 @@ function App() {
 
   useEffect(() => {
     const fetchMusic = async () => {
+      let AnimalCrossingMusic = new AudioContext();
       const response = await fetch(`http://acnhapi.com/v1/music/${randomNumberGenerator}`)
-      const data = await response.json(); // it's MP3 data that is returned
-      setMusic(data);
+      const data = await response.arrayBuffer();
+      const musicToPlay = await AnimalCrossingMusic.decodeAudioData(data);
+      setMusic(musicToPlay);
     }
-
     fetchMusic();
   }, [])
 
@@ -54,7 +55,7 @@ function App() {
     <h1>Bulletin Board</h1>
     <img src={FolktaleLogo}/>
     </header>
-    <MusicContainer/>
+    <MusicContainer music={music}/>
     <CommunityContainer villagers={villagers}/>
     </>
   );
