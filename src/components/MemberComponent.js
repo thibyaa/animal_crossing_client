@@ -13,7 +13,7 @@ const MemberComponent = ({villager}) => {
 
     return ( 
         <div className="member_card">
-        <img src={villager.image_uri}/>
+        <img src={villager.image_uri} alt={"hello"}/>
         <h2>{memberName}</h2>
         {detailsDisplay ? <p> Personality: {villager.personality} <br/> Hobby: {villager.hobby} <br/> Species: {villager.species} </p> : <p>{villager.saying}</p>}
         <button onClick={handleClick}>{detailsDisplay ? "Back" : "Learn More"}</button>

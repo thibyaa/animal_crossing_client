@@ -29,7 +29,7 @@ function App() {
 
       // slice first 5 
       const fiveVillagers = villagersArray.slice(0, 5);
-      console.log(fiveVillagers);
+      // console.log(fiveVillagers);
 
       setVillagers(fiveVillagers);
     }
@@ -56,7 +56,7 @@ function App() {
       playSound.buffer = music;
       playSound.connect(AnimalCrossingMusic.destination);
       playSound.start(AnimalCrossingMusic.currentTime);
-      // playSound.stop(AnimalCrossingMusic.currentTime);
+      // playSound.stop(AnimalCrossingMusic.currentTime); // this needs to go in a useEffect 
   }
 
   const handleClick = () => {
@@ -66,10 +66,10 @@ function App() {
 
   return (
     <>
-    <img src={AnimalCrossingLogo}/>
+    <img src={AnimalCrossingLogo} alt={"hello"}/>
     <header>
     <h1>Bulletin Board</h1>
-    <img src={FolktaleLogo}/>
+    <img src={FolktaleLogo} alt={"hello"}/>
     </header>
     <section className="music_box">
       <button onClick={handleClick}>{playMusic ? "Please STOP" : "Play Music"}  </button>
